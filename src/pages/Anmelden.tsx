@@ -17,9 +17,13 @@ const Anmelden: React.FC = () => {
         <meta property="og:title" content="Anmeldung - Fahrschule Mobil Inh. Sven Bergheim" />
         <meta property="og:description" content="Melde dich jetzt online für deinen Führerschein an und starte deine Ausbildung bei Fahrschule Mobil Inh. Sven Bergheim." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://default-seite-vorlage.vercel.app/anmelden" />
-        <meta property="og:image" content="https://default-seite-vorlage.vercel.app/default_images/logo_default.webp" />
-        <link rel="canonical" href="https://default-seite-vorlage.vercel.app/anmelden" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/anmelden" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/default_images/logo_default.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Anmeldung - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta name="twitter:description" content="Melde dich jetzt online für deinen Führerschein an und starte deine Ausbildung bei Fahrschule Mobil Inh. Sven Bergheim." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/default_images/logo_default.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/anmelden" />
       </Helmet>
       <Section background="card-bg" padding="sm">
         <Container>

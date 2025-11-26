@@ -13,9 +13,13 @@ const Impressum: React.FC = () => {
         <meta property="og:title" content="Impressum - Fahrschule Mobil Inh. Sven Bergheim" />
         <meta property="og:description" content="Rechtliche Informationen und Impressum der Fahrschule Mobil Inh. Sven Bergheim in Alfter." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://default-seite-vorlage.vercel.app/impressum" />
-        <meta property="og:image" content="https://default-seite-vorlage.vercel.app/default_images/logo_default.webp" />
-        <link rel="canonical" href="https://default-seite-vorlage.vercel.app/impressum" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/impressum" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/default_images/logo_default.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Impressum - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta name="twitter:description" content="Rechtliche Informationen und Impressum der Fahrschule Mobil Inh. Sven Bergheim in Alfter." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/default_images/logo_default.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/impressum" />
       </Helmet>
       <Section background="card-bg" padding="xl">
         <Container>
@@ -43,8 +47,7 @@ const Impressum: React.FC = () => {
                 <h2 className="text-2xl font-semibold text-text-heading mb-3">
                   Kontakt
                 </h2>
-                <p className="mb-2">Telefon: <a href="tel:+492222928693">02222 928693</a></p>
-                <p className="mb-2">Mobil: <a href="tel:+491638880180">0163 8880180</a></p>
+                <p className="mb-2">Telefon: <a href="tel:+491638880180">0163 8880180</a></p>
               </div>
 
 

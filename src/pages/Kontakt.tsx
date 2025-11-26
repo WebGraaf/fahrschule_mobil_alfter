@@ -61,7 +61,7 @@ const Kontakt: React.FC = () => {
     {
       label: 'Alfter',
       address: 'Pelzstraße 14, 53347 Alfter',
-      phone: ['02222 928693', '0163 8880180'],
+      phone: ['0163 8880180'],
       hours: 'Öffnungszeiten Büro\nMo 18:30–20:30\nDo 18:30–20:30\nSa 12:30–14:30',
       mapSrc: 'https://maps.google.com/maps?q=Pelzstraße%2014,%2053347%20Alfter&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
@@ -77,9 +77,13 @@ const Kontakt: React.FC = () => {
         <meta property="og:title" content="Kontakt - Fahrschule Mobil Inh. Sven Bergheim" />
         <meta property="og:description" content="Fragen zur Ausbildung oder Anmeldung? Kontaktiere uns – wir helfen dir gerne weiter." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://default-seite-vorlage.vercel.app/kontakt" />
-        <meta property="og:image" content="https://default-seite-vorlage.vercel.app/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp" />
-        <link rel="canonical" href="https://default-seite-vorlage.vercel.app/kontakt" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/kontakt" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kontakt - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta name="twitter:description" content="Fragen zur Ausbildung oder Anmeldung? Kontaktiere uns – wir helfen dir gerne weiter." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/kontakt" />
       </Helmet>
       <Section background="card-bg" padding="" className="py-8 md:pt-12">
         <Container>
@@ -96,7 +100,7 @@ const Kontakt: React.FC = () => {
               Kontaktiere uns
             </h1>
             <p className="text-lg text-text-body leading-relaxed mb-4">
-              Du hast Fragen zu deiner Fahrausbildung oder möchtest dich anmelden? Wir sind für dich da! Ruf uns einfach an unter <a href="tel:+492222928693" className="text-primary-600 hover:underline">02222 928693</a> oder <a href="tel:+491638880180" className="text-primary-600 hover:underline">0163 8880180</a>.
+              Du hast Fragen zu deiner Fahrausbildung oder möchtest dich anmelden? Wir sind für dich da! Ruf uns einfach an unter <a href="tel:+491638880180" className="text-primary-600 hover:underline">0163 8880180</a>.
             </p>
             <p className="text-lg text-text-body leading-relaxed mb-4">
               Besuche uns in unserer Fahrschule in Alfter: Pelzstraße 14, 53347 Alfter.

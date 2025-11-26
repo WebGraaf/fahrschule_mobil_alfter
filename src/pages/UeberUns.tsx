@@ -95,8 +95,8 @@ const UeberUns: React.FC = () => {
 
   const teamMembers1 = [
     {
-      imageSrc: '/kunde_bilder_download/Fahrlehrer_Sven_Bergheim_2.webp',
-      imageAlt: 'Sven Bergheim - Inhaber',
+      imageSrc: '/kunde_bilder_download/Sven_Bergheim_Fahrlehrer.webp',
+      imageAlt: 'Sven Bergheim Fahrlehrer',
       title: 'Sven Bergheim',
       description: 'Inhaber',
     },
@@ -112,9 +112,13 @@ const UeberUns: React.FC = () => {
         <meta property="og:title" content="Über Uns - Fahrschule Mobil Inh. Sven Bergheim" />
         <meta property="og:description" content="Wir sind Fahrschule Mobil Inh. Sven Bergheim – lerne uns und unsere Philosophie kennen." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://default-seite-vorlage.vercel.app/ueber-uns" />
-        <meta property="og:image" content="https://default-seite-vorlage.vercel.app/default_images/Platzhalter_Gruppenbild_Team.webp" />
-        <link rel="canonical" href="https://default-seite-vorlage.vercel.app/ueber-uns" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/ueber-uns" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/default_images/Platzhalter_Gruppenbild_Team.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Über Uns - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta name="twitter:description" content="Wir sind Fahrschule Mobil Inh. Sven Bergheim – lerne uns und unsere Philosophie kennen." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/default_images/Platzhalter_Gruppenbild_Team.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/ueber-uns" />
       </Helmet>
       <Section background="card-bg" padding="xl">
         <Container>

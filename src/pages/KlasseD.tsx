@@ -10,8 +10,19 @@ const KlasseD: React.FC = () => {
     <div className="bg-page-bg">
       <Helmet>
         <title>Führerschein Klasse D - Fahrschule Mobil Inh. Sven Bergheim</title>
-        <meta name="description" content="Fahrschule Mobil Inh. Sven Bergheim in Alfter bietet Führerscheine für Pkw an." />
+        <meta name="description" content="Fahrschule Mobil Inh. Sven Bergheim in Alfter bietet Führerscheine für Busse (Klasse D) an. Professionelle Ausbildung mit erfahrenen Fahrlehrern." />
+        <meta name="keywords" content="Führerschein Klasse D, Bus-Führerschein, Fahrschule, Fahrausbildung, Fahrschule Mobil, Sven Bergheim, Alfter" />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Führerschein Klasse D - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta property="og:description" content="Starte deine Bus-Ausbildung bei Fahrschule Mobil Inh. Sven Bergheim. Sichere und professionelle Fahrausbildung in Alfter." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/fuehrerscheine/klasse-d" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/default_images/Klasse_D_Default.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Führerschein Klasse D - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta name="twitter:description" content="Starte deine Bus-Ausbildung bei Fahrschule Mobil Inh. Sven Bergheim. Sichere und professionelle Fahrausbildung in Alfter." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/default_images/Klasse_D_Default.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/fuehrerscheine/klasse-d" />
       </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>

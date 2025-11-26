@@ -10,8 +10,19 @@ const KlasseT: React.FC = () => {
     <div className="bg-page-bg">
       <Helmet>
         <title>Führerschein Klasse T - Fahrschule Mobil Inh. Sven Bergheim</title>
-        <meta name="description" content="Fahrschule Mobil Inh. Sven Bergheim in Alfter bietet Führerscheine für Pkw an." />
+        <meta name="description" content="Fahrschule Mobil Inh. Sven Bergheim in Alfter bietet Führerscheine für land- und forstwirtschaftliche Fahrzeuge (Klasse T) an. Professionelle Ausbildung mit erfahrenen Fahrlehrern." />
+        <meta name="keywords" content="Führerschein Klasse T, Landwirtschaft, Forstwirtschaft, Fahrschule, Fahrausbildung, Fahrschule Mobil, Sven Bergheim, Alfter" />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Führerschein Klasse T - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta property="og:description" content="Starte deine Ausbildung für land- und forstwirtschaftliche Fahrzeuge bei Fahrschule Mobil Inh. Sven Bergheim. Sichere und professionelle Fahrausbildung in Alfter." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/fuehrerscheine/klasse-t" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/default_images/Klasse_T_Default.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Führerschein Klasse T - Fahrschule Mobil Inh. Sven Bergheim" />
+        <meta name="twitter:description" content="Starte deine Ausbildung für land- und forstwirtschaftliche Fahrzeuge bei Fahrschule Mobil Inh. Sven Bergheim. Sichere und professionelle Fahrausbildung in Alfter." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/default_images/Klasse_T_Default.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/fuehrerscheine/klasse-t" />
       </Helmet>
       <Section background="card-bg" padding="xl" className="pb-0">
         <Container>

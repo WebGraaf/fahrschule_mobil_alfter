@@ -10,21 +10,22 @@ import BannerAnmelden from '../components/BannerAnmelden';
 import { SplitMediaText } from '../components/SplitMediaText';
 import { SplitMediaTextInvert } from '../components/SplitMediaTextInvert';
 import { FAQ } from '../components/FAQ';
+import { EinfachePreisliste } from '../components/EinfachePreisliste';
 
 const Home: React.FC = () => {
   // Daten für TextGalerieStapel
   const galleryImages = [
     {
+      src: '/kunde_bilder_download/Sven_Bergheim_mit_Auto.webp',
+      alt: 'Sven Bergheim mit Auto'
+    },
+    {
+      src: '/kunde_bilder_download/Fahrschulwagen_Sven_Bergheim_2.jpeg',
+      alt: 'Fahrschulwagen Sven Bergheim 2'
+    },
+    {
       src: '/kunde_bilder_download/Fahrschulwagen_Sven_Bergheim.webp',
       alt: 'Fahrschulwagen Sven Bergheim'
-    },
-    {
-      src: '/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp',
-      alt: 'Fahrschule von außen'
-    },
-    {
-      src: '/kunde_bilder_download/Fahrschule_Bergheim_von_innen.webp',
-      alt: 'Fahrschule von innen'
     }
   ];
 
@@ -33,7 +34,7 @@ const Home: React.FC = () => {
     {
       label: 'Alfter',
       address: 'Pelzstraße 14, 53347 Alfter',
-      phone: ['02222 928693', '0163 8880180'],
+      phone: ['0163 8880180'],
       hours: 'Öffnungszeiten Büro\nMo 18:30–20:30\nDo 18:30–20:30\nSa 12:30–14:30',
       mapSrc: 'https://maps.google.com/maps?q=Pelzstraße%2014,%2053347%20Alfter&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
@@ -69,9 +70,13 @@ const Home: React.FC = () => {
         <meta property="og:title" content="Fahrschule Mobil - Sicher zum Führerschein" />
         <meta property="og:description" content="Starte deine Fahrausbildung bei Fahrschule Mobil Inh. Sven Bergheim. Moderne Fahrzeuge, erfahrene Fahrlehrer und hohe Erfolgsquoten." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://default-seite-vorlage.vercel.app/" />
-        <meta property="og:image" content="https://default-seite-vorlage.vercel.app/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp" />
-        <link rel="canonical" href="https://default-seite-vorlage.vercel.app/" />
+        <meta property="og:url" content="https://fahrschule-mobil.com/" />
+        <meta property="og:image" content="https://fahrschule-mobil.com/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Fahrschule Mobil - Sicher zum Führerschein" />
+        <meta name="twitter:description" content="Starte deine Fahrausbildung bei Fahrschule Mobil Inh. Sven Bergheim. Moderne Fahrzeuge, erfahrene Fahrlehrer und hohe Erfolgsquoten." />
+        <meta name="twitter:image" content="https://fahrschule-mobil.com/kunde_bilder_download/Fahrschule_Bergheim_von_aussen.webp" />
+        <link rel="canonical" href="https://fahrschule-mobil.com/" />
       </Helmet>
       <HeroStartseite
         title="Fahren lernen. Freiheit leben."
@@ -99,8 +104,22 @@ const Home: React.FC = () => {
           {
             icon: Car,
             title: 'Klasse B',
-            description: 'Führerschein für PKW bis 3,5 Tonnen. Der beliebteste Führerschein.',
-            link: '/fuehrerscheine/klasse-b',
+            description: 'Pkw bis 3,5 t zGG / max. 8 Sitzplätze + Anhänger ≤ 750 kg',
+            link: '/fuehrerscheine/klasse-b#b',
+            spotlightColor: 'primary',
+          },
+          {
+            icon: Car,
+            title: 'Klasse BF17',
+            description: 'Begleitetes Fahren ab 17 (Klasse B unter Aufsicht bis 18 J.)',
+            link: '/fuehrerscheine/klasse-b#bf17',
+            spotlightColor: 'primary',
+          },
+          {
+            icon: Car,
+            title: 'Klasse B197',
+            description: 'Automatik-Prüfung mit Schaltberechtigung',
+            link: '/fuehrerscheine/klasse-b#b197',
             spotlightColor: 'primary',
           },
         ]}
@@ -121,10 +140,12 @@ const Home: React.FC = () => {
 
       <BannerAnmelden />
 
+      <EinfachePreisliste />
+
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <SplitMediaText
-          imageSrc="/kunde_bilder_download/Fahrlehrer_Sven_Bergheim_2.webp"
-          imageAlt="Fahrlehrer Sven Bergheim"
+          imageSrc="/kunde_bilder_download/Sven_Bergheim_mit_Auto.webp"
+          imageAlt="Sven Bergheim mit Auto"
           title="Professionelle Fahrausbildung"
           description="Unser erfahrener Inhaber Sven Bergheim und sein Team bieten Ihnen eine professionelle Fahrausbildung. Mit modernen Methoden und individueller Betreuung führen wir Sie sicher zum Führerschein. Vertrauen Sie auf unsere langjährige Erfahrung und Expertise."
           imagePosition="left"
@@ -133,8 +154,8 @@ const Home: React.FC = () => {
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <SplitMediaTextInvert
-          imageSrc="/kunde_bilder_download/Fahrschulwagen_Sven_Bergheim.webp"
-          imageAlt="Moderner Fuhrpark"
+          imageSrc="/kunde_bilder_download/Fahrschulwagen_Sven_Bergheim_2.jpeg"
+          imageAlt="Fahrschulwagen Sven Bergheim 2"
           title="Topmoderner Fuhrpark"
           description="Unser Fahrzeugpark umfasst moderne und sichere Fahrzeuge für Ihre Ausbildung. Alle Fahrzeuge sind perfekt gewartet und entsprechen den höchsten Sicherheitsstandards. Erfahren Sie mehr über unsere topmoderne Ausstattung."
           imagePosition="right"
