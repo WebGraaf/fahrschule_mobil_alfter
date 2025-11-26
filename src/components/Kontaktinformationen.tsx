@@ -13,7 +13,7 @@ export function Kontaktinformationen() {
     {
       icon: Phone,
       label: 'Telefon',
-      value: '02222 928693, 0163 8880180',
+      value: '0163 8880180',
       color: 'primary'
     },
     {

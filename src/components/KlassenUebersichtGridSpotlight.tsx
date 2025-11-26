@@ -151,7 +151,7 @@ export const KlassenUebersichtGridSpotlight: React.FC<KlassenUebersichtGridSpotl
             </span>
           ))}
         </h2>
-        <div className="grid grid-cols-1 gap-8 px-0 md:px-[25%]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-0">
           {features.map((feature, index) => (
             <div
               key={index}
