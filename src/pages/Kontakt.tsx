@@ -100,7 +100,10 @@ const Kontakt: React.FC = () => {
               Kontaktiere uns
             </h1>
             <p className="text-lg text-text-body leading-relaxed mb-4">
-              Du hast Fragen zu deiner Fahrausbildung oder möchtest dich anmelden? Wir sind für dich da! Ruf uns einfach an unter <a href="tel:+491638880180" className="text-primary-600 hover:underline">0163 8880180</a> oder schreibe uns eine E-Mail an <a href="mailto:SvenBergheim@t-online.de" className="text-primary-600 hover:underline">SvenBergheim@t-online.de</a>.
+              Du hast Fragen zu deiner Fahrausbildung oder möchtest dich anmelden? Wir sind für dich da!
+            </p>
+            <p className="text-lg text-text-body leading-relaxed mb-4">
+              Ruf uns einfach an unter <a href="tel:+491638880180" className="text-primary-600 hover:underline">0163 8880180</a> oder schreibe uns eine E-Mail an <a href="mailto:SvenBergheim@t-online.de" className="text-primary-600 hover:underline">SvenBergheim@t-online.de</a>.
             </p>
             <p className="text-lg text-text-body leading-relaxed mb-4">
               Besuche uns in unserer Fahrschule in Alfter: Pelzstraße 14, 53347 Alfter.
