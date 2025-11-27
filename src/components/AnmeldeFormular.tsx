@@ -253,22 +253,15 @@ interface InputProps {
   onChange?: (value: string) => void;
   error?: string;
   required?: boolean;
+  showError?: boolean;
+  onBlur?: () => void;
 }
 
-const Input: React.FC<InputProps> = ({ label, type = 'text', placeholder, value, onChange, error, required }) => {
-  const [inputValue, setInputValue] = useState(value || '');
-  const [touched, setTouched] = useState(false);
+const Input: React.FC<InputProps> = ({ label, type = 'text', placeholder, value, onChange, error, required, showError, onBlur }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
     onChange?.(e.target.value);
   };
-
-  const handleBlur = () => {
-    setTouched(true);
-  };
-
-  const showError = error && touched;
 
   return (
     <div>
@@ -278,9 +271,9 @@ const Input: React.FC<InputProps> = ({ label, type = 'text', placeholder, value,
       </label>
       <input
         type={type}
-        value={inputValue}
+        value={value}
         onChange={handleChange}
-        onBlur={handleBlur}
+        onBlur={onBlur}
         placeholder={placeholder}
         className={`w-full px-4 py-2.5 bg-blue-50 border rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
           showError ? 'border-red-400' : 'border-blue-300'
@@ -356,6 +349,19 @@ const FormLoading: React.FC<FormLoadingProps> = ({ message = 'Submitting...' }) 
 
 export const AnmeldeFormular: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState({
+    vorname: '',
+    nachname: '',
+    email: '',
+    telefon: '',
+    geburtsdatum: '',
+    klasse: '',
+    starttermin: '',
+    nachricht: '',
+    website: '', // Honeypot
+  });
+  const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>({});
+
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
@@ -451,12 +457,63 @@ export const AnmeldeFormular: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleBlur = (field: keyof typeof formData) => {
+    setTouchedFields(prev => ({ ...prev, [field]: true }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState('loading');
-    setTimeout(() => {
+
+    // Basic validation can be added here
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${formData.vorname} ${formData.nachname}`,
+          email: formData.email,
+          message: `
+            Telefon: ${formData.telefon}
+            Geburtsdatum: ${formData.geburtsdatum}
+            Gewünschte Klasse: ${formData.klasse}
+            Gewünschter Starttermin: ${formData.starttermin}
+            --------------------
+            Nachricht:
+            ${formData.nachricht}
+          `,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       setFormState('success');
-    }, 2000);
+      // Optionally reset form
+      setFormData({
+        vorname: '',
+        nachname: '',
+        email: '',
+        telefon: '',
+        geburtsdatum: '',
+        klasse: '',
+        starttermin: '',
+        nachricht: '',
+        website: '',
+      });
+
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setFormState('error');
+    }
   };
 
   return (
@@ -474,19 +531,57 @@ export const AnmeldeFormular: React.FC = () => {
                     <img ref={logoRef} src={logo} alt="Logo" className="h-16 w-auto" />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[0] = el)}>
-                    <Input label="Vorname" placeholder="Max" required error="Vorname ist erforderlich" />
+                    <Input
+                      label="Vorname"
+                      placeholder="Max"
+                      required
+                      value={formData.vorname}
+                      onChange={(val) => handleInputChange('vorname', val)}
+                      onBlur={() => handleBlur('vorname')}
+                      error="Vorname ist erforderlich"
+                      showError={touchedFields.vorname && !formData.vorname}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[1] = el)}>
-                    <Input label="Nachname" placeholder="Mustermann" required error="Nachname ist erforderlich" />
+                    <Input
+                      label="Nachname"
+                      placeholder="Mustermann"
+                      required
+                      value={formData.nachname}
+                      onChange={(val) => handleInputChange('nachname', val)}
+                      onBlur={() => handleBlur('nachname')}
+                      error="Nachname ist erforderlich"
+                      showError={touchedFields.nachname && !formData.nachname}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[2] = el)}>
-                    <Input label="E-Mail-Adresse" type="email" placeholder="max@example.com" required />
+                    <Input
+                      label="E-Mail-Adresse"
+                      type="email"
+                      placeholder="max@example.com"
+                      required
+                      value={formData.email}
+                      onChange={(val) => handleInputChange('email', val)}
+                      onBlur={() => handleBlur('email')}
+                      error="E-Mail ist erforderlich"
+                      showError={touchedFields.email && !formData.email}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[3] = el)}>
-                    <Input label="Telefonnummer" type="tel" placeholder="+49 123 456789" required />
+                    <Input
+                      label="Telefonnummer"
+                      type="tel"
+                      placeholder="+49 123 456789"
+                      required
+                      value={formData.telefon}
+                      onChange={(val) => handleInputChange('telefon', val)}
+                      onBlur={() => handleBlur('telefon')}
+                      error="Telefonnummer ist erforderlich"
+                      showError={touchedFields.telefon && !formData.telefon}
+                    />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[4] = el)}>
-                    <DatePicker label="Geburtsdatum" />
+                    <DatePicker label="Geburtsdatum" value={formData.geburtsdatum} onChange={(val) => handleInputChange('geburtsdatum', val)} />
                   </div>
                 </fieldset>
 
@@ -503,10 +598,12 @@ export const AnmeldeFormular: React.FC = () => {
                         { value: 'l', label: 'Klasse L' },
                         { value: 't', label: 'Klasse T' },
                       ]}
+                      value={formData.klasse}
+                      onChange={(val) => handleInputChange('klasse', val)}
                     />
                   </div>
                   <div ref={(el) => el && (fieldsRef.current[6] = el)}>
-                    <DatePicker label="Gewünschter Starttermin" />
+                    <DatePicker label="Gewünschter Starttermin" value={formData.starttermin} onChange={(val) => handleInputChange('starttermin', val)} />
                   </div>
                 </fieldset>
 
@@ -518,14 +615,15 @@ export const AnmeldeFormular: React.FC = () => {
                       className="w-full px-3 py-2 border border-field-border rounded-lg focus:ring-2 focus:ring-field-focus-ring focus:border-transparent bg-field-bg text-field-fg placeholder-field-placeholder"
                       rows={4}
                       placeholder="Ihre Nachricht..."
+                      value={formData.nachricht}
+                      onChange={(e) => handleInputChange('nachricht', e.target.value)}
                     />
                   </div>
                 </fieldset>
 
                 <button
                   type="submit"
-                  disabled
-                  className="submit-btn w-full py-3 bg-gray-400 text-gray-600 rounded-lg font-semibold shadow-lg cursor-not-allowed"
+                  className="submit-btn w-full py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Anmeldung abschicken
                 </button>
@@ -533,11 +631,6 @@ export const AnmeldeFormular: React.FC = () => {
             )}
 
             {formState === 'loading' && <FormLoading message="Anmeldung wird verarbeitet..." />}
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-start justify-start">
-              <div className="bg-red-600 text-white px-4 py-2 rounded-br-lg font-semibold text-sm">
-                Wird in kürze freigeschaltet
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -546,6 +639,14 @@ export const AnmeldeFormular: React.FC = () => {
           type="success"
           title="Anmeldung erfolgreich!"
           message="Ihre Anmeldung wurde erfolgreich übermittelt. Wir melden uns bald bei Ihnen."
+          onClose={() => setFormState('idle')}
+        />
+      )}
+      {formState === 'error' && (
+        <FormResult
+          type="error"
+          title="Fehler bei der Anmeldung"
+          message="Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt."
           onClose={() => setFormState('idle')}
         />
       )}
