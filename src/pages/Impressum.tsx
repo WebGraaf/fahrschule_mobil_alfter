@@ -38,6 +38,14 @@ const Impressum: React.FC = () => {
 
               <div>
                 <h2 className="text-2xl font-semibold text-text-heading mb-3">
+                  Umsatzsteuer-ID
+                </h2>
+                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</p>
+                <p>65154032973</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-semibold text-text-heading mb-3">
                   Vertreten durch
                 </h2>
                 <p>Sven Bergheim</p>

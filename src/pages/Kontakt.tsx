@@ -62,7 +62,7 @@ const Kontakt: React.FC = () => {
       label: 'Alfter',
       address: 'Pelzstraße 14, 53347 Alfter',
       phone: ['0163 8880180'],
-      hours: 'Öffnungszeiten Büro\nMo 18:30–20:30\nDo 18:30–20:30\nSa 12:30–14:30',
+      hours: 'Öffnungszeiten Büro\nMo 18:30–20:30\nDo 18:30–20:30',
       mapSrc: 'https://maps.google.com/maps?q=Pelzstraße%2014,%2053347%20Alfter&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
   ];
@@ -106,7 +106,7 @@ const Kontakt: React.FC = () => {
               Besuche uns in unserer Fahrschule in Alfter: Pelzstraße 14, 53347 Alfter.
             </p>
             <p className="text-lg text-text-body leading-relaxed">
-              Unsere Öffnungszeiten: Mo 18:30–20:30; Do 18:30–20:30; Sa 12:30–14:30 (Stand: November 2025). Wir freuen uns auf dich!
+              Unsere Öffnungszeiten: Mo 18:30–20:30; Do 18:30–20:30 (Stand: November 2025). Wir freuen uns auf dich!
             </p>
           </div>
         </Container>

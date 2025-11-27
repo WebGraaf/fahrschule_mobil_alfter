@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       label: 'Alfter',
       address: 'Pelzstraße 14, 53347 Alfter',
       phone: ['0163 8880180'],
-      hours: 'Öffnungszeiten Büro\nMo 18:30–20:30\nDo 18:30–20:30\nSa 12:30–14:30',
+      hours: 'Öffnungszeiten Büro\nMo 18:30–20:30\nDo 18:30–20:30',
       mapSrc: 'https://maps.google.com/maps?q=Pelzstraße%2014,%2053347%20Alfter&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
   ];

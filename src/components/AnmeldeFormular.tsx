@@ -15,60 +15,30 @@ interface SelectProps {
 }
 
 const Select: React.FC<SelectProps> = ({ label, options, value, onChange, error }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(value || '');
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleSelect = (optionValue: string) => {
-    setSelected(optionValue);
-    onChange?.(optionValue);
-    setIsOpen(false);
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onChange?.(e.target.value);
   };
 
-  const selectedLabel = options.find(opt => opt.value === selected)?.label || 'Auswählen...';
-
   return (
-    <div className="relative" ref={ref}>
+    <div>
       <label className="block text-sm font-medium text-neutral-700 mb-2">{label}</label>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-4 py-2.5 text-left bg-white border rounded-lg transition-all duration-200 flex items-center justify-between hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-          error ? 'border-red-400' : 'border-blue-300'
-        }`}
-      >
-        <span className={selected ? 'text-neutral-900' : 'text-neutral-500'}>{selectedLabel}</span>
-        <ChevronDown className={`w-5 h-5 text-neutral-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-
-      {isOpen && (
-        <div className="absolute z-50 w-full mt-2 bg-white border border-blue-200 rounded-lg shadow-lg max-h-60 overflow-auto animate-in fade-in slide-in-from-top-2 duration-200">
+      <div className="relative">
+        <select
+          value={value || ''}
+          onChange={handleChange}
+          className={`w-full px-4 py-2.5 pr-10 text-left bg-blue-50 border rounded-lg transition-all duration-200 appearance-none hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+            error ? 'border-red-400' : 'border-blue-300'
+          } ${!value ? 'text-neutral-500' : 'text-neutral-900'}`}
+        >
+          <option value="" disabled>Auswählen...</option>
           {options.map(option => (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => handleSelect(option.value)}
-              className={`w-full px-4 py-2.5 text-left hover:bg-gray-100 transition-colors flex items-center justify-between ${
-                selected === option.value ? 'bg-gray-100 text-blue-700' : 'text-neutral-700'
-              }`}
-            >
+            <option key={option.value} value={option.value}>
               {option.label}
-              {selected === option.value && <Check className="w-5 h-5" />}
-            </button>
+            </option>
           ))}
-        </div>
-      )}
-
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400 pointer-events-none" />
+      </div>
       {error && (
         <div className="flex items-center mt-2 text-sm text-red-600 animate-in fade-in slide-in-from-top-1 duration-200">
           <AlertCircle className="w-4 h-4 mr-1" />
@@ -477,19 +447,7 @@ export const AnmeldeFormular: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: `${formData.vorname} ${formData.nachname}`,
-          email: formData.email,
-          message: `
-            Telefon: ${formData.telefon}
-            Geburtsdatum: ${formData.geburtsdatum}
-            Gewünschte Klasse: ${formData.klasse}
-            Gewünschter Starttermin: ${formData.starttermin}
-            --------------------
-            Nachricht:
-            ${formData.nachricht}
-          `,
-        }),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -521,7 +479,7 @@ export const AnmeldeFormular: React.FC = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
         <h2 className="form-title text-3xl font-bold text-heading mb-8 text-center">Jetzt Anmelden</h2>
         <div className="max-w-2xl mx-auto relative">
-          <div ref={formRef} className="border border-primary-200 rounded-xl p-8 bg-card-bg filter grayscale-50 relative">
+          <div ref={formRef} className="border border-primary-200 rounded-xl p-8 bg-card-bg relative">
             {formState === 'idle' && (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <HoneypotField />
@@ -591,12 +549,10 @@ export const AnmeldeFormular: React.FC = () => {
                     <Select
                       label="Gewünschte Klasse"
                       options={[
-                        { value: 'a', label: 'Klasse A' },
-                        { value: 'b', label: 'Klasse B' },
-                        { value: 'c', label: 'Klasse C' },
-                        { value: 'd', label: 'Klasse D' },
-                        { value: 'l', label: 'Klasse L' },
-                        { value: 't', label: 'Klasse T' },
+                        { value: 'B', label: 'Klasse B' },
+                        { value: 'BE', label: 'Klasse BE' },
+                        { value: 'B96', label: 'Klasse B96' },
+                        { value: 'B197', label: 'Klasse B197 (Automatik)' },
                       ]}
                       value={formData.klasse}
                       onChange={(val) => handleInputChange('klasse', val)}
@@ -623,8 +579,7 @@ export const AnmeldeFormular: React.FC = () => {
 
                 <button
                   type="submit"
-                  disabled
-                  className="submit-btn w-full py-3 bg-gray-400 text-gray-600 rounded-lg font-semibold shadow-lg cursor-not-allowed"
+                  className="submit-btn w-full py-3 bg-btn-solid-bg text-btn-solid-fg rounded-lg font-semibold shadow-lg hover:bg-btn-solid-hover transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
                 >
                   Anmeldung abschicken
                 </button>
@@ -632,11 +587,6 @@ export const AnmeldeFormular: React.FC = () => {
             )}
 
             {formState === 'loading' && <FormLoading message="Anmeldung wird verarbeitet..." />}
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-start justify-start">
-              <div className="bg-red-600 text-white px-4 py-2 rounded-br-lg font-semibold text-sm">
-                Wird in kürze freigeschaltet
-              </div>
-            </div>
           </div>
         </div>
       </div>

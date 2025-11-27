@@ -25,8 +25,8 @@ const Anmelden: React.FC = () => {
         <meta name="twitter:image" content="https://fahrschule-mobil.com/default_images/logo_default.webp" />
         <link rel="canonical" href="https://fahrschule-mobil.com/anmelden" />
       </Helmet>
-      <Section background="card-bg" padding="sm">
-        <Container>
+      <div className="bg-page-bg py-16">
+        <div className="max-w-7xl mx-auto px-4">
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
             className="text-center max-w-3xl mx-auto"
@@ -46,8 +46,8 @@ const Anmelden: React.FC = () => {
               Fülle einfach das folgende Formular aus und wir melden uns zeitnah bei dir, um alles Weitere zu besprechen. Dein Weg zum Führerschein beginnt hier!
             </p>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </div>
 
       <AnmeldeFormular />
     </div>
