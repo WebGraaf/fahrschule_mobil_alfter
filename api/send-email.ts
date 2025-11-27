@@ -109,13 +109,27 @@ export default async function handler(
       html: '<p>Fahrschule mobil hat eine neue Anmeldung.</p>',
     };
 
-    // Send both emails in parallel
-    await Promise.all([
+    // Send both emails, but handle errors individually for robustness
+    const results = await Promise.allSettled([
       transporter.sendMail(mailOptions1),
       transporter.sendMail(mailOptions2)
     ]);
 
-    res.status(200).json({ message: 'Emails sent successfully' });
+    const failedEmails = results.filter(result => result.status === 'rejected');
+
+    if (failedEmails.length > 0) {
+      console.error('Failed to send one or more emails:', failedEmails);
+      // Even if one fails, we might still return success if at least one succeeded.
+      // Or, you could tailor the response based on which one failed.
+      // For now, we'll consider it a partial success if at least one email went through.
+      if (failedEmails.length < results.length) {
+        res.status(207).json({ message: 'One or more emails failed to send, but others succeeded.' });
+      } else {
+        throw new Error('All emails failed to send.');
+      }
+    } else {
+      res.status(200).json({ message: 'Emails sent successfully' });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error sending email' });
