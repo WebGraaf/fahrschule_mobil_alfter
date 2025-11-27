@@ -106,17 +106,12 @@ const Kontakt: React.FC = () => {
               Besuche uns in unserer Fahrschule in Alfter: Pelzstraße 14, 53347 Alfter.
             </p>
             <p className="text-lg text-text-body leading-relaxed">
-              Unsere Öffnungszeiten: Mo 18:30–20:30; Do 18:30–20:30 (Stand: November 2025). Wir freuen uns auf dich!
+              Unsere Öffnungszeiten: Mo 18:30–20:30; Do 18:30–20:30.
             </p>
           </div>
         </Container>
       </Section>
 
-      <Section background="page-bg" padding="md">
-        <Container>
-          <Kontaktinformationen />
-        </Container>
-      </Section>
 
       <Section background="page-bg" padding="md">
         <Container>
