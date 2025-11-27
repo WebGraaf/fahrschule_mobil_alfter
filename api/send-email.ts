@@ -95,7 +95,7 @@ export default async function handler(
   try {
     const mailOptions1 = {
       from: `"Anmeldeformular Fahrschule Mobil" <${process.env.EMAIL_USER}>`,
-      to: 'info@pflanzen-verstehen.de',
+      to: 'SvenBergheim@t-online.de',
       subject: `Neue Anmeldung von ${vorname} ${nachname}`,
       text: plainTextBody,
       html: htmlBody,
