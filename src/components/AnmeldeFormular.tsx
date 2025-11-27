@@ -623,7 +623,8 @@ export const AnmeldeFormular: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="submit-btn w-full py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  disabled
+                  className="submit-btn w-full py-3 bg-gray-400 text-gray-600 rounded-lg font-semibold shadow-lg cursor-not-allowed"
                 >
                   Anmeldung abschicken
                 </button>
@@ -631,6 +632,11 @@ export const AnmeldeFormular: React.FC = () => {
             )}
 
             {formState === 'loading' && <FormLoading message="Anmeldung wird verarbeitet..." />}
+            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-start justify-start">
+              <div className="bg-red-600 text-white px-4 py-2 rounded-br-lg font-semibold text-sm">
+                Wird in kürze freigeschaltet
+              </div>
+            </div>
           </div>
         </div>
       </div>
